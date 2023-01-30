@@ -1,16 +1,17 @@
-import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import type { UserConfig, ConfigEnv, ProxyOptions } from 'vite'
 import { isProd, loadEnv } from '/@/utils/vite'
-import { svgBuilder } from '/@/components/icon/svg/index'
-
+import { createVitePlugins } from './build/vite/plugin'
 const pathResolve = (dir: string): any => {
     return resolve(__dirname, '.', dir)
 }
 
 // https://vitejs.cn/config/
-const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
-    const { VITE_PORT, VITE_OPEN, VITE_BASE_PATH, VITE_OUT_DIR, VITE_PROXY_URL } = loadEnv(mode)
+const viteConfig = ({ command, mode }: ConfigEnv): UserConfig => {
+    const viteEnv = loadEnv(mode)
+    const { VITE_PORT, VITE_OPEN, VITE_BASE_PATH, VITE_OUT_DIR, VITE_PROXY_URL } = viteEnv
+
+    const isBuild = command === 'build';
 
     const alias: Record<string, string> = {
         '/@': pathResolve('./src/'),
@@ -29,7 +30,7 @@ const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
     }
 
     return {
-        plugins: [vue(), svgBuilder('./src/assets/icons/')],
+        plugins: createVitePlugins(viteEnv, isBuild),
         root: process.cwd(),
         resolve: { alias },
         base: VITE_BASE_PATH,
