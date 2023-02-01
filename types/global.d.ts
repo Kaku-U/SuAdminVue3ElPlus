@@ -25,3 +25,5 @@ interface ApiResponse<T = any> {
 }
 
 type ApiPromise<T = any> = Promise<ApiResponse<T>>
+
+declare type Recordable<T = any> = Record<string, T>;

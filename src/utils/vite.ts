@@ -9,7 +9,6 @@ export interface ViteEnv {
     VITE_AXIOS_BASE_URL: string
     VITE_PROXY_URL: string
     VITE_MOCK_SWITCH?: boolean
-    VITE_MOCK_URL?: string
 }
 
 export function isDev(mode: string): boolean {

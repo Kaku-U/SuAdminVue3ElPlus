@@ -15,7 +15,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     VITE_PROXY_URL,
     VITE_AXIOS_BASE_URL,
     VITE_MOCK_SWITCH,
-    VITE_MOCK_URL
   } = viteEnv;
 
   const vitePlugins: (PluginOption | PluginOption[])[] = [
