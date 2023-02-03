@@ -3,6 +3,11 @@ import { useAdminInfo } from '/@/stores/adminInfo'
 
 const controllerUrl = '/admin/index/'
 
+/**
+ * 
+ * @description 获取用户信息和菜单列表权限
+ * @returns 
+ */
 export function index() {
     return createAxios({
         url: controllerUrl + 'index',
@@ -10,6 +15,13 @@ export function index() {
     })
 }
 
+/**
+ * 
+ * @description 登录
+ * @param method 
+ * @param params 
+ * @returns 
+ */
 export function login(method: 'get' | 'post', params: object = {}): ApiPromise {
     return createAxios({
         url: controllerUrl + 'login',
@@ -18,6 +30,11 @@ export function login(method: 'get' | 'post', params: object = {}): ApiPromise {
     }) as ApiPromise
 }
 
+/**
+ * 
+ * @description 登出
+ * @returns 
+ */
 export function logout() {
     const adminInfo = useAdminInfo()
     return createAxios({
