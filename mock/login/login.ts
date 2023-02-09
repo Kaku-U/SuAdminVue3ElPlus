@@ -1,7 +1,8 @@
+import { index } from '/@/api/backend/module';
 import { MockMethod } from 'vite-plugin-mock';
 import { resultError, resultSuccess, getRequestToken, requestParams } from '../_util';
 
-// Fake Login Info
+// Fake Login Info 登录
 const fakeLoginInfo = {
   "userInfo": {
     "id": 1,
@@ -13,6 +14,11 @@ const fakeLoginInfo = {
     "refreshToken": ""
   },
   "routePath": "\/admin"
+}
+
+// Fake Login Get 获取是否展示captcha
+const fakeLoginGet = {
+  "captcha": false
 }
 
 // Fake Admin Info
@@ -1263,7 +1269,7 @@ const fakeAdminInfo = {
 }
 
 export default [
-  // Mock Login
+  // Mock Login post
   {
     url: '/admin/index/login',
     timeout: 200,
@@ -1283,6 +1289,22 @@ export default [
           }
         )
       }
+    }
+  },
+  // Mock Login get
+  {
+    url: '/admin/index/login',
+    timeout: 200,
+    method: 'get',
+    response: (body: any) => {
+      const data = fakeLoginGet
+      return resultSuccess(
+        data,
+        {
+          msg: "",
+          time: '1675924120',
+        }
+      )
     }
   },
   // Mock Admin Info
