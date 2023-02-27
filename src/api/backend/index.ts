@@ -1,7 +1,6 @@
 import createAxios from '/@/utils/axios'
 import { useAdminInfo } from '/@/stores/adminInfo'
 
-const controllerUrl = '/admin/index/'
 
 /**
  * 
@@ -10,7 +9,7 @@ const controllerUrl = '/admin/index/'
  */
 export function index() {
     return createAxios({
-        url: controllerUrl + 'index',
+        url: '/admin/index/index',
         method: 'get',
     })
 }
@@ -24,7 +23,7 @@ export function index() {
  */
 export function login(method: 'get' | 'post', params: object = {}): ApiPromise {
     return createAxios({
-        url: controllerUrl + 'login',
+        url: '/admin/index/login',
         data: params,
         method: method,
     }) as ApiPromise
@@ -38,7 +37,7 @@ export function login(method: 'get' | 'post', params: object = {}): ApiPromise {
 export function logout() {
     const adminInfo = useAdminInfo()
     return createAxios({
-        url: controllerUrl + 'logout',
+        url: '/admin/index/logout',
         method: 'POST',
         data: {
             refresh_token: adminInfo.getToken('refresh'),
