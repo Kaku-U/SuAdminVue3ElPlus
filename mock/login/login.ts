@@ -1,4 +1,3 @@
-import { index } from '/@/api/backend/module';
 import { MockMethod } from 'vite-plugin-mock';
 import { resultError, resultSuccess, getRequestToken, requestParams } from '../_util';
 
@@ -21,7 +20,7 @@ const fakeLoginGet = {
   "captcha": false
 }
 
-// Fake Admin Info
+// Fake Admin Info 获取用户信息
 const fakeAdminInfo = {
   "adminInfo": {
     "id": 1,
@@ -1268,6 +1267,9 @@ const fakeAdminInfo = {
   }
 }
 
+// Fake Logout Info 登出
+const fakeLogoutInfo = {
+}
 export default [
   // Mock Login post
   {
@@ -1319,5 +1321,15 @@ export default [
       )
     }
   },
+  // Mock Logout
+  {
+    url: '/admin/index/logout',
+    timeout: 200,
+    method: 'post',
+    response: (body: any) => {
+      const data = fakeLogoutInfo
+      return resultSuccess(data)
+    }
+  }
 
 ] as MockMethod[]
