@@ -116,7 +116,7 @@ import { Local, Session } from '/@/utils/storage'
 import { ADMIN_INFO, BA_ACCOUNT } from '/@/stores/constant/cacheKey'
 import router from '/@/router'
 import { routePush } from '/@/utils/router'
-import { logout } from '/@/api/backend/index'
+import { logout } from '/@/api/backend/login'
 import { postClearCache } from '/@/api/common'
 import TerminalVue from '/@/components/terminal/index.vue'
 
